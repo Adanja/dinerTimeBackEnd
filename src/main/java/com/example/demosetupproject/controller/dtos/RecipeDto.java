@@ -5,10 +5,10 @@ import com.example.demosetupproject.model.Recipe;
 public class RecipeDto {
     public long id;
 
-    String name;
-    String time;
-    String difficultyRating;
-    String description;
+    public String name;
+    public String time;
+    public String difficultyRating;
+    public String description;
 
     public static RecipeDto fromRecipe(Recipe recipe) {
         var dto = new RecipeDto();
