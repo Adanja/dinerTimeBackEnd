@@ -1,5 +1,6 @@
 package com.example.demosetupproject.controller;
 
+import com.example.demosetupproject.controller.dtos.IdInputDto;
 import com.example.demosetupproject.controller.dtos.ReviewDto;
 import com.example.demosetupproject.controller.dtos.ReviewInputDto;
 import com.example.demosetupproject.model.Review;
@@ -41,4 +42,8 @@ public class ReviewController {
             reviewService.deleteReview(id);
     }
 
+    @PutMapping("/review/{id}/pictures")
+    public void assignPictureToReview (@PathVariable("id")Long reviewId, @RequestBody IdInputDto idInputDto) {
+        reviewService.assignPictureToReview(reviewId, idInputDto.id);
+    }
 }

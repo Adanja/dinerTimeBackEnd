@@ -10,4 +10,6 @@ public interface RecipeService {
     List<Recipe> getAllRecipes();
     void updateRecipe(Long id, Recipe recipe);
     void deleteRecipe(Long id);
+    void assignPictureToRecipe(Long id, Long pictureId);
+    void assignReviewtoRecipe (Long id, Long reviewId);
 }

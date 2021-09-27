@@ -1,6 +1,6 @@
 package com.example.demosetupproject.service;
 
-import antlr.StringUtils;
+import org.springframework.util.StringUtils;
 import com.example.demosetupproject.exceptions.RecordNotFoundException;
 import com.example.demosetupproject.model.Picture;
 import com.example.demosetupproject.repository.PictureRepository;

@@ -5,11 +5,11 @@ import com.example.demosetupproject.model.Review;
 public class ReviewInputDto {
     public long id;
 
-    String description;
-    String title;
-    String username;
-    String date;
-    Double ratedStars;
+    public String description;
+    public String title;
+    public String username;
+    public String date;
+    public Double ratedStars;
 
     public Review toReview(){
         var review = new Review();

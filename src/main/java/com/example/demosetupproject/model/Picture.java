@@ -23,6 +23,9 @@ public class Picture {
     @OneToOne(mappedBy = "picture")
     Recipe recipe;
 
+    public Picture() {
+    };
+
     public Picture(String name, String type, byte[] data) {
 
         this.name = name;

@@ -1,9 +1,6 @@
 package com.example.demosetupproject.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Review {
@@ -17,6 +14,10 @@ public class Review {
     String username;
     String date;
     Double ratedStars;
+
+
+    @OneToOne
+    Picture picture;
 
     public Double getRatedStars() {
         return ratedStars;
@@ -72,8 +73,14 @@ public class Review {
         return date;
     }
 
+    public void setPicture(Picture picture) {
+        this.picture = picture;
+    }
+
 //    Generate date
     public void setDate(String date) {
         this.date = date;
     }
+
+
 }

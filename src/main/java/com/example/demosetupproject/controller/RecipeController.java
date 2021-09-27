@@ -1,5 +1,6 @@
 package com.example.demosetupproject.controller;
 
+import com.example.demosetupproject.controller.dtos.IdInputDto;
 import com.example.demosetupproject.controller.dtos.RecepyInputDto;
 import com.example.demosetupproject.controller.dtos.RecipeDto;
 import com.example.demosetupproject.model.Recipe;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("recepies")
+@RequestMapping("recipies")
 public class RecipeController {
     private final RecipeService recipeService;
 
@@ -51,6 +52,17 @@ public class RecipeController {
     @DeleteMapping("/{id}")
     public void deleteRecipe(@PathVariable ("id")Long id) {
         recipeService.deleteRecipe(id);
+    }
+
+    @PutMapping("/recipe/{id}/pictures")
+    public void assignPictureToRecipe (@PathVariable ("id")Long recipeId, @RequestBody IdInputDto idInputDto) {
+        recipeService.assignPictureToRecipe(recipeId, idInputDto.id);
+    }
+
+//    Hoe en waar koppel ik reviewId aan deze put mapping?
+    @PutMapping("/recipe/{id}/reviews")
+    public void assignReviewToRecipe(@PathVariable ("id")Long recipeId, Long reviewId, @RequestBody IdInputDto inputDto) {
+       recipeService.assignReviewtoRecipe(recipeId, inputDto.id);
     }
 
 }

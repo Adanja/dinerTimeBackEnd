@@ -20,8 +20,11 @@ public class User {
     @Column
     private String apikey;
 
-    @Column
+    @Column(nullable = false, unique = true)
     private String email;
+
+//    @OneToOne
+//    UserData userData;
 
     @OneToMany(
             targetEntity = com.example.demosetupproject.model.Authority.class,

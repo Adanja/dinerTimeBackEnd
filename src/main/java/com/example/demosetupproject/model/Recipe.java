@@ -1,8 +1,6 @@
 package com.example.demosetupproject.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Recipe {
@@ -14,6 +12,21 @@ public class Recipe {
     String time;
     String difficultyRating;
     String description;
+
+    @OneToOne
+    Picture picture;
+
+    @OneToMany
+    Review review;
+
+
+    public Review getReview() {
+        return review;
+    }
+
+    public void setReview(Review review) {
+        this.review = review;
+    }
 
     public Long getId() {
         return id;
@@ -35,6 +48,10 @@ public class Recipe {
         return description;
     }
 
+    public Picture getPicture() {
+        return picture;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -53,5 +70,9 @@ public class Recipe {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setPicture(Picture picture) {
+        this.picture = picture;
     }
 }

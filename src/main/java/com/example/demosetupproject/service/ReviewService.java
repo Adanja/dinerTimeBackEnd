@@ -8,5 +8,8 @@ public interface ReviewService {
     Review addReview(Review review);
     Review updateReview(Long id, Review review);
     Review calculateRatedStars(Review review);
+//    void assignPicture(Long id, Long pictureId);
     void deleteReview(Long id);
+
+    void assignPictureToReview(Long id, Long pictureId);
 }

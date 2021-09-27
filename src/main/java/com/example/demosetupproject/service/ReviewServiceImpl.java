@@ -2,6 +2,7 @@ package com.example.demosetupproject.service;
 
 import com.example.demosetupproject.exceptions.RecordNotFoundException;
 import com.example.demosetupproject.model.Review;
+import com.example.demosetupproject.repository.PictureRepository;
 import com.example.demosetupproject.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,10 +12,14 @@ import java.util.Optional;
 @Service
 public class ReviewServiceImpl implements ReviewService{
     private ReviewRepository reviewRepository;
+//    private UserDataRepository userDataRepository;
+    private PictureRepository pictureRepository;
 
     @Autowired
-    public ReviewServiceImpl(ReviewRepository reviewRepository) {
+    public ReviewServiceImpl(ReviewRepository reviewRepository, PictureRepository pictureRepository) {
+
         this.reviewRepository = reviewRepository;
+        this.pictureRepository = pictureRepository;
     }
 
     @Override
@@ -55,6 +60,31 @@ public class ReviewServiceImpl implements ReviewService{
     @Override
     public Review calculateRatedStars(Review review) {
         return null;
+    }
+
+    @Override
+    public void assignPictureToReview(Long id, Long pictureId) {
+
+        var optionalReview = reviewRepository.findById(id);
+
+        var optionalPicture = pictureRepository.findById(pictureId);
+
+        if (optionalReview.isPresent() && optionalPicture.isPresent()) {
+
+            var review = optionalReview.get();
+
+            var picture = optionalPicture.get();
+
+            review.setPicture(picture);
+
+            reviewRepository.save(review);
+
+        } else {
+
+            throw new RecordNotFoundException();
+
+        }
+
     }
 
     @Override

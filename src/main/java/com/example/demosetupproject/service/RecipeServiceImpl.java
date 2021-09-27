@@ -3,6 +3,7 @@ package com.example.demosetupproject.service;
 
 import com.example.demosetupproject.exceptions.RecordNotFoundException;
 import com.example.demosetupproject.model.Recipe;
+import com.example.demosetupproject.repository.PictureRepository;
 import com.example.demosetupproject.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +15,12 @@ import java.util.Optional;
 @Service
 public class RecipeServiceImpl implements RecipeService {
     private RecipeRepository recipeRepository;
+    private PictureRepository pictureRepository;
 
     @Autowired
-    public RecipeServiceImpl(RecipeRepository recipeRepository) {
+    public RecipeServiceImpl(RecipeRepository recipeRepository, PictureRepository pictureRepository) {
         this.recipeRepository = recipeRepository;
+        this.pictureRepository = pictureRepository;
     }
 
     @Override
@@ -55,6 +58,23 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public void deleteRecipe(Long id) {
         recipeRepository.deleteById(id);
+    }
+
+    @Override
+    public void assignPictureToRecipe(Long id, Long pictureId) {
+        var optionalRecipe = recipeRepository.findById(id);
+
+        var optionalPicture = pictureRepository.findById(pictureId);
+
+        if (optionalRecipe.isPresent() && optionalPicture.isPresent()) {
+            var recipe = optionalRecipe.get();
+            var picture = optionalPicture.get();
+
+            recipe.setPicture(picture);
+            recipeRepository.save(recipe);
+        } else {
+            throw new RecordNotFoundException();
+        }
     }
 
 }
