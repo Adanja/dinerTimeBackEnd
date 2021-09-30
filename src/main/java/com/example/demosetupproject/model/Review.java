@@ -9,7 +9,7 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    String description;
+    private String description;
     String title;
     String username;
     String date;
@@ -18,6 +18,25 @@ public class Review {
 
     @OneToOne
     Picture picture;
+
+    @ManyToOne
+    Recipe recipe;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Picture getPicture() {
+        return picture;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
 
     public Double getRatedStars() {
         return ratedStars;

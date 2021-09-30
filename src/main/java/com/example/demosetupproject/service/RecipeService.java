@@ -11,5 +11,5 @@ public interface RecipeService {
     void updateRecipe(Long id, Recipe recipe);
     void deleteRecipe(Long id);
     void assignPictureToRecipe(Long id, Long pictureId);
-    void assignReviewtoRecipe (Long id, Long reviewId);
+    void assignReviewToRecipe (Long id, Long reviewId);
 }

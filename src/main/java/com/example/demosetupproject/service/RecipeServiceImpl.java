@@ -48,6 +48,7 @@ public class RecipeServiceImpl implements RecipeService {
     public void updateRecipe(Long id, Recipe newRecipe) {
         if (!recipeRepository.existsById(id))throw new RecordNotFoundException();
         Recipe recipe = recipeRepository.findById(id).get();
+        recipe.setId(recipe.getId());
         recipe.setDescription(newRecipe.getDescription());
         recipe.setTime(newRecipe.getTime());
         recipe.setDifficultyRating(newRecipe.getDifficultyRating());
@@ -77,4 +78,8 @@ public class RecipeServiceImpl implements RecipeService {
         }
     }
 
+    @Override
+    public void assignReviewToRecipe (Long id, Long reviewId) {
+
+    }
 }

@@ -62,7 +62,8 @@ public class RecipeController {
 //    Hoe en waar koppel ik reviewId aan deze put mapping?
     @PutMapping("/recipe/{id}/reviews")
     public void assignReviewToRecipe(@PathVariable ("id")Long recipeId, Long reviewId, @RequestBody IdInputDto inputDto) {
-       recipeService.assignReviewtoRecipe(recipeId, inputDto.id);
+       recipeService.assignReviewToRecipe(recipeId, inputDto.id);
+//       return recipeService.getAllRecipes(recipeId);
     }
 
 }

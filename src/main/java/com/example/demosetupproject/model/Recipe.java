@@ -1,6 +1,7 @@
 package com.example.demosetupproject.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Recipe {
@@ -16,16 +17,15 @@ public class Recipe {
     @OneToOne
     Picture picture;
 
-    @OneToMany
-    Review review;
+    @OneToMany (mappedBy = "recipe")
+    List<Review> reviews;
 
-
-    public Review getReview() {
-        return review;
+    public List<Review> getReviews() {
+        return reviews;
     }
 
-    public void setReview(Review review) {
-        this.review = review;
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 
     public Long getId() {
